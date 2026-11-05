@@ -14,12 +14,12 @@ timezone: Asia/Shanghai
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: 我的博客 # the main title
+title: yorkhellen 的技术笔记 # the main title
 
-tagline: nanobot 学习笔记与技术写作 # it will display as the subtitle
+tagline: 记录 LLM 工程实践与日常折腾 # it will display as the subtitle
 
 description: >- # used by seo meta and the atom feed
-  用 GitHub Pages + Jekyll 搭的个人博客，记录 nanobot 学习笔记与日常折腾。
+  用 GitHub Pages + Jekyll 搭的个人技术博客，记录 nanobot 与 LLM 工程的实践、踩坑与思考。
 
 # Fill in the protocol & hostname for your site.
 # E.g. 'https://username.github.io', note that it does not end with a '/'.
