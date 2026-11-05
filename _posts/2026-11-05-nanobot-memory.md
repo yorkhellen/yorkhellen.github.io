@@ -1,12 +1,19 @@
 ---
-title: "nanobot 的 Context 管理：三层记忆架构拆解"
+title: "nanobot 的 Memory 管理：三层记忆架构拆解"
 date: 2026-11-05 11:00:00 +0800
-tags: [nanobot, llm, context, 架构]
+tags: [nanobot, llm, memory, context, 架构]
 ---
 
-最近在折腾 [nanobot](https://github.com/yorkie-labs/nanobot)——一个本地运行的 LLM 助手框架。它最吸引我的不是模型本身，而是**把"上下文"当成一个正经工程问题来设计**。这篇是它的三层记忆架构拆解：会话内压缩、Dream 定时归档、跨会话检索。
+最近在折腾 [nanobot](https://github.com/yorkie-labs/nanobot)——一个本地运行的 LLM 助手框架。它最吸引我的不是模型本身，而是**把"记忆"当成一个正经工程问题来设计**。这篇是它的三层记忆架构拆解：会话内压缩、Dream 定时归档、跨会话检索。
 
-## 问题：上下文是稀缺资源
+动手拆之前，先厘清两个常被混用的概念：
+
+- **Context（上下文）**：某一轮请求实际喂给 LLM 的 prompt——system prompt + 历史 turn + 当前消息。瞬时、每轮重建、受窗口大小限制。
+- **Memory（记忆）**：跨轮 / 跨会话保留的信息——会话摘要、MEMORY/SOUL/USER、sqlite 全量消息。持久化、有存储介质、有完整的写入 → 归档 → 读取生命周期。
+
+一句话：**context 是"模型此刻看到什么"，memory 是"模型事后还记得什么"**。memory 是 context 的数据源，context 是 memory 的消费出口，两者通过 `_last_summary` 桥接。本文的三层架构属于 memory 管理——三层全是记忆的生命周期（写、沉淀、读），context 管理只出现在"组装"和"超预算压缩"两个环节。
+
+## 问题：上下文窗口是稀缺资源
 
 LLM 的上下文窗口再大也是有限的（本实例 200K tokens）。朴素方案只有两种，都不可用：
 
