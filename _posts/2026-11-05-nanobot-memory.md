@@ -593,8 +593,8 @@ flowchart TD
 
 ## 参考文献
 
-<a id="ref-1"></a>[1] OpenAI. [Conversation state](https://platform.openai.com/docs/guides/conversation-state)[EB/OL]. [2026-11-06].
+<span id="ref-1"></span>[1] OpenAI. [Conversation state](https://platform.openai.com/docs/guides/conversation-state)[EB/OL]. [2026-11-06].
 
-<a id="ref-2"></a>[2] LangChain. [Memory overview](https://docs.langchain.com/oss/python/concepts/memory)[EB/OL]. [2026-11-06].
+<span id="ref-2"></span>[2] LangChain. [Memory overview](https://docs.langchain.com/oss/python/concepts/memory)[EB/OL]. [2026-11-06].
 
-<a id="ref-3"></a>[3] SUMERS T R, YAO S, NARASIMHAN K, et al. [Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)[J]. Transactions on Machine Learning Research, 2024. 本文引用第 4.1、4.3、4.5 节。
+<span id="ref-3"></span>[3] SUMERS T R, YAO S, NARASIMHAN K, et al. [Cognitive Architectures for Language Agents](https://arxiv.org/abs/2309.02427)[J]. Transactions on Machine Learning Research, 2024. 本文引用第 4.1、4.3、4.5 节。
